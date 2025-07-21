@@ -1,0 +1,54 @@
+{
+  "name": "airpg",
+  "version": "1.0.0",
+  "description": "RPG Battle",
+  "main": "electron-main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "GPL-3.0-only",
+  "devDependencies": {
+    "electron": "^36.5.0",
+    "electron-builder": "^26.0.12"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0"
+  },
+  "build": {
+    "appId": "com.colinpyy.airpgbattle",
+    "productName": "逆·聖修道女の堕ちた洞窟です",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "electron-main.js",
+      "preload.js",
+      "app/**/*",
+      "package.json",
+      "!.env",
+      "!app/data/**"
+    ],
+    "extraResources": [
+      {
+        "from": ".env",
+        "to": ".env"
+      },
+      {
+        "from": "app/data",
+        "to": "data"
+      }
+    ],
+    "asar": true,
+    "win": {
+      "target": "nsis",
+      "icon": "app/favicon.ico"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "app/favicns.icns"
+    }
+  }
+}

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RPG Battle</title>
+  <link rel="stylesheet" href="public/style.css" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+</head>
+
+<body data-bg-src="app/data/img/background.png">
+  <div id="main-container">
+    <!-- 角色选择弹窗 -->
+    <div id="character-select-modal" class="modal">
+      <div class="modal-content">
+        <!-- 游戏标题和介绍 -->
+        <div class="game-header" id="game-header">
+          <h1 class="game-title">逆·聖修道女の堕ちた洞窟です</h1>
+          <p class="game-description">
+            欢迎你，地牢之主，作为魔王候选人的试炼，你需要证明自己的经营能力。虽然你自己的实力已经可以说是无敌的存在，但这次试炼禁止你使用自己的能力，你只通过远程操控魔物来经营地牢。今天一名名叫<span
+              style="color: yellow;">薇薇安</span>的圣女为了救一个人类幼崽闯进了地牢，把你的地牢搅得天翻地覆。但现在她因为传送魔法消耗了大半的魔力，在这里选择你操控的第一只魔物尝试征服这位不知天高地厚的闯入者吧。
+          </p>
+        </div>
+        <!-- 玩家名称输入框 -->
+        <div class="player-name-input" id="player-name-input">
+          <input type="text" id="player-name" placeholder="请输入玩家名称">
+        </div>
+        <h2>选择你的角色</h2>
+        <div class="character-grid" id="character-list">
+          <!-- 角色将通过JS动态加载 -->
+        </div>
+        <button id="confirm-selection" class="confirm-btn">确认选择</button>
+      </div>
+    </div>
+    <button class="save-btn" onclick="openSaveModal()">Save</button>
+    <button class="load-btn" onclick="openLoadModal()">Load</button>
+    <button class="back-btn" onclick="backMainMenu()">Return</button>
+    <input type="file" id="fileInput" style="display:none" />
+
+    <div class="game-container">
+      <!-- 上半部分 -->
+      <div class="top-section">
+        <!-- 左侧敌人区域 -->
+        <div class="enemy-area">
+          <div class="enemy-frame enemy">
+            <img data-src="data/img/stage1.png" alt="圣女" class="character-img" id="enemy-img">
+            <img data-src="data/img/stage1.png" alt="技能图" class="character-img" id="enemy-img2">
+          </div>
+          <div class="health-bar">
+            <div id="enemy-health" class="health" style="width: 100%;"></div>
+            <span id="enemy-health-text" class="health-text">100/100</span>
+          </div>
+          <div id="enemy-log" class="side-log  enemy-log-border">
+            <table>
+              <tr>
+                <td>❤️ 当前血量：</td>
+                <td>200/200</td>
+                <td>🖤 当前阶段：</td>
+                <td>第一阶段</td>
+              </tr>
+              <tr>
+                <td>📚 当前法力值：</td>
+                <td>100/100</td>
+                <td>👹 击败数：</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>💫 当前状态：</td>
+                <td>无</td>
+                <td>💕 当前高潮度：</td>
+                <td>0/100</td>
+              </tr>
+              <tr>
+                <td>👿 当前堕落值：</td>
+                <td>0/100</td>
+                <td>💦 高潮次数：</td>
+                <td>0</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <!-- 右侧主日志 -->
+        <div class="main-log-container">
+          <h3 class="log-title">日志</h3>
+          <div id="main-log" class="main-log-content">
+            <div id="main-log1">
+              <span>
+                在古老的阿莱瑟大陆上，圣光教会的势力遍布各个王国。这是一个魔法与信仰并存的世界，黑暗生物潜伏在深山密林中，而光明的使者们则肩负著守护平民的神圣使命。
+                <br>
+                圣修道女<span
+                  style="color: yellow;">薇薇安</span>完成了一项艰难的救援任务。三天前，村庄里一个名叫托米的七岁男孩在玩耍时误入了村庄北部的古老洞窟——那里曾是远古文明的遗迹，如今却成为了各种魔物的栖息地。村民们恐惧不已，却无人敢深入那危险的地下迷宫。
+                <br>
+                作为教会派遣到边境村庄的圣修道女，<span
+                  style="color: yellow;">薇薇安</span>义不容辞地接下了这个任务。她独自一人，手持圣光法杖，踏入了阴森的洞窟深处。经过两天一夜的搜寻和战斗，她终于在洞窟最深处找到了躲在角落里瑟瑟发抖的小托米。
+                <br>
+                使用了仅有的一枚传送水晶，<span
+                  style="color: yellow;">薇薇安</span>将孩子安全送回了村庄。然而，水晶的能量只够传送一个人，她只能选择让孩子先回去。现在，她必须独自面对回程的危险——那些被她之前的圣光魔法惊动的洞窟守护者们正在苏醒，而她的魔力也在之前的战斗中消耗了大半。
+                <br>
+                洞窟深处传来了低沉的咆哮声，<span
+                  style="color: yellow;">薇薇安</span>握紧了手中的法杖，银白色的修女袍在微弱的圣光中闪烁著圣洁的光芒。她必须在天黑之前离开这里，否则夜晚降临时，更恐怖的黑暗生物会从深渊中爬出...
+                <br>
+              </span>
+            </div>
+            <div id="main-log2">
+            </div>
+            <div id="tooltip"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 下半部分 -->
+      <div class="bottom-section">
+        <!-- 左侧玩家区域 -->
+        <div class="player-area">
+          <div class="character-frame player">
+            <img data-src="data/img/slime_t.png" alt="玩家" class="character-img" id="player-img">
+          </div>
+          <div class="health-bar">
+            <div id="player-health" class="health" style="width: 100%;"></div>
+            <span id="player-health-text" class="health-text">100/100</span>
+          </div>
+        </div>
+
+        <!-- 右侧操作区域 -->
+        <div class="action-area">
+          <div class="strategy-input">
+            <input type="text" id="strategyPrompt" placeholder="输入命令内容..." class="strategy-field" autocomplete="off" />
+          </div>
+          <div id="player-actions-container">
+            <div class="actions" id="player-actions">
+              <div class="action-card" onclick="playerAction(1)">
+                <div class="card-header">攻击</div>
+                <div class="card-content">造成基础伤害</div>
+              </div>
+              <div class="action-card" onclick="playerAction(2)">
+                <div class="card-header">防御</div>
+                <div class="card-content">减少受到的伤害</div>
+              </div>
+              <div class="action-card" onclick="playerAction(3)">
+                <div class="card-header">休息</div>
+                <div class="card-content">恢复少量生命值</div>
+              </div>
+            </div>
+            <div id="overlay" style="display: none;">
+              <div class="spinner"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="startMenu">
+    <div class="menuContent">
+      <div class="gameTitle" data-bg-src="app/data/UI/title.png"></div>
+      <button id="startButton" data-bg-src="app/data/UI/start.png" class="menuButton"></button>
+      <button id="continueButton" data-bg-src="app/data/UI/continue.png" class="menuButton"></button>
+      <button id="loadButton" data-bg-src="app/data/UI/load.png" class="menuButton"></button>
+      <button id="exitButton" data-bg-src="app/data/UI/exit.png" class="menuButton"></button>
+    </div>
+    <div class="mascotContainer">
+      <div class="mascotImage" data-bg-src="app/data/UI/kanban.png"></div>
+    </div>
+  </div>
+
+  <div id="save-game-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal-btn" onclick="closeModal('save-game-modal')">×</span>
+      <h2>保存游戏</h2>
+      <p class="modal-description">选择一个存档槽位来保存你当前的游戏进度。</p>
+      <div id="save-slot-list" class="save-slot-list">
+        <!-- 存档槽位将由JS动态加载 -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 读档模态窗口 -->
+  <div id="load-game-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal-btn" onclick="closeModal('load-game-modal')">×</span>
+      <h2>读取存档</h2>
+      <p class="modal-description">选择一个存档来加载。</p>
+      <div id="load-slot-list" class="save-slot-list">
+        <!-- 存档槽位将由JS动态加载 -->
+      </div>
+    </div>
+  </div>
+  <script src="renderer.js" type="module"></script>
+  <script>
+    const tooltip = document.getElementById('tooltip')
+
+    document.getElementById("main-log2").addEventListener("mouseover", function (e) {
+      const target = e.target
+      if (target.classList.contains("enemylog") && target.dataset.tooltip) {
+        tooltip.textContent = target.dataset.tooltip
+        tooltip.style.display = "block"
+      } else {
+        // 如果移动到非enemylog元素上，隐藏tooltip
+        tooltip.style.display = "none";
+      }
+    })
+
+    document.getElementById("main-log2").addEventListener("mousemove", function (e) {
+      if (tooltip.style.display === "block") {
+        tooltip.style.left = (e.clientX + 10) + "px"
+        tooltip.style.top = (e.clientY + 10) + "px"
+      }
+    })
+
+    document.getElementById("main-log2").addEventListener("mouseout", function (e) {
+      const related = e.relatedTarget
+      if (!related || !e.currentTarget.contains(related)) {
+        tooltip.style.display = "none"
+      }
+    })
+
+  </script>
+</body>
+
+</html>

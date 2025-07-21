@@ -1,0 +1,116 @@
+{
+  "name": "薇薇安",
+  "maxHP": 200,
+  "maxMP": 200,
+  "maxdegenerate": 100,
+  "maxclimax_value": 100,
+  "HP": 200,
+  "MP": 80,
+  "degenerate": 0,
+  "climax_value": 0,
+  "climax_times": 0,
+  "monsters_defeat": [],
+  "bound": 0,
+  "invincible":0,
+  "pregnant":false,
+  "cloth_break": false,
+  "cloth_wet": false,
+  "skills_desc":"1. 圣光冲击：基础的圣魔法，举起法杖对准敌人发射出圣光束造成圣属性伤害。消耗10点法力对敌人造成25点HP伤害。\n2. 恩赐之泉：手握法杖敲击地面发出蓝色的波纹般的光芒对自己进行治疗，消耗10点法力恢复30点HP值并降低5点堕落值。\n3. 祈祷回响：紧闭双眼努力屏蔽身体的感官并进行祈祷，恢复15点法力值并降低8点高潮值。\n4. 信仰屏障：在面前生成一面金色透明的屏障屏蔽下一次HP伤害同时降低5点高潮值和2点堕落值，消耗10点法力。\n5. 攻击：使用法杖进行物理攻击，对敌人造成10点HP伤害。",
+  "skills": [
+    {
+      "name": "圣光冲击",
+      "description":"举起法杖对准敌人发射出圣光束造成圣属性伤害。消耗<span style=\"color: yellow;\">10</span>点<span style=\"color: blue;\">法力</span>对敌人造成<span style=\"color: yellow;\">25</span>点<span style=\"color: red;\">HP</span>伤害。",
+      "full_desc":"举起法杖对准敌人发射出圣光束造成圣属性伤害。消耗10点法力对敌人造成25点HP伤害。",
+      "effects": [
+        {
+          "side": "player",
+          "source": "HP",
+          "value": -25
+        },
+        {
+          "side": "enemy",
+          "source": "MP",
+          "value": -10
+        }
+      ]
+    },
+    {
+      "name": "恩赐之泉",
+      "description":"手握法杖敲击地面发出蓝色的波纹般的光芒对自己进行治疗，消耗了<span style=\"color: yellow;\">10</span>点<span style=\"color: blue;\">法力</span>恢复了<span style=\"color: yellow;\">30</span>点<span style=\"color: red;\">HP</span>值并降低了<span style=\"color: yellow;\">5</span>点<span style=\"color: purple;\">堕落值</span>。",
+      "full_desc":"手握法杖敲击地面发出蓝色的波纹般的光芒对自己进行治疗，消耗了10点法力恢复了30点HP值并降低了5点堕落值。",
+      "effects": [
+        {
+          "side": "enemy",
+          "source": "HP",
+          "value": 30
+        },
+        {
+          "side": "enemy",
+          "source": "degenerate",
+          "value": -5
+        },
+        {
+          "side": "enemy",
+          "source": "MP",
+          "value": -10
+        }
+      ]
+    },
+    {
+      "name": "祈祷回响",
+      "description":"紧闭双眼努力屏蔽身体的感官并进行祈祷，恢复了<span style=\"color: yellow;\">15</span>点<span style=\"color: blue;\">法力</span>并降低了<span style=\"color: yellow;\">8</span>点<span style=\"color: deeppink;\">高潮值</span>。",
+      "full_desc":"紧闭双眼努力屏蔽身体的感官并进行祈祷，恢复了15点法力值并降低了8点高潮值。",
+      "effects": [
+        {
+          "side": "enemy",
+          "source": "MP",
+          "value": 15
+        },
+        {
+          "side": "enemy",
+          "source": "climax_value",
+          "value": -8
+        }
+      ]
+    },
+    {
+      "name": "信仰屏障",
+      "description":"在面前生成了一面金色透明的<span style=\"color: yellow;\">屏障</span>屏蔽下一次<span style=\"color: red;\">HP</span>伤害同时降低了<span style=\"color: yellow;\">5</span>点<span style=\"color: deeppink;\">高潮值</span>和<span style=\"color: yellow;\">2</span>点<span style=\"color: purple;\">堕落值</span>，消耗了<span style=\"color: yellow;\">10</span>点<span style=\"color: blue;\">法力</span>。",
+      "full_desc":"在面前生成了一面金色透明的屏障屏蔽下一次HP伤害同时降低了5点高潮值和2点堕落值，消耗了10点法力。",
+      "effects": [
+        {
+          "side": "enemy",
+          "source": "climax_value",
+          "value": -5
+        },
+        {
+          "side": "enemy",
+          "source": "degenerate",
+          "value": -2
+        },
+        {
+          "side": "enemy",
+          "source": "invincible",
+          "value": 1
+        },
+        {
+          "side": "enemy",
+          "source": "MP",
+          "value": -10
+        }
+      ]
+    },
+    {
+      "name": "攻击",
+      "description":"使用法杖进行物理攻击，对敌人造成了<span style=\"color: yellow;\">10</span>点<span style=\"color: red;\">HP</span>伤害。",
+      "full_desc":"使用法杖进行物理攻击，对敌人造成了10点HP伤害。",
+      "effects": [
+        {
+          "side": "player",
+          "source": "HP",
+          "value": -10
+        }
+      ]
+    }
+  ]
+}
