@@ -1,5 +1,7 @@
 # 逆·聖修道女の堕ちた洞窟です
 基于大语言模型API结构化输出功能的RPG对战游戏，游戏内容素材来自类脑社区角色卡作者一知半解制作的角色卡《聖修道女の堕ちた洞窟です》与yorino_233的戏剧之王预设，基于谷歌gemini的结构化输出功能进行制作。是对在SillyTavern外使用结构化输出功能来约束输出内容格式进行角色扮演游戏的一次探索。推荐使用支持结构化输出功能的谷歌aistudio的API，同时也兼容其他api通过文字引导进行json格式输出。
+![image](https://github.com/colinpyy/AI_DungeonRPG/blob/main/example.png)
+![image](https://github.com/colinpyy/AI_DungeonRPG/blob/main/example2.png)
 
 # API设置
 ```
