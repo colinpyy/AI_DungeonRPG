@@ -74,9 +74,9 @@ API_JSON_SCHEMA=true
 ```
 支持为一个技能添加多个分支（技能效果相同但文字描述不同），可参见flower.json中的百合之拥技能。
 
-制作完后将新角色的json文件以角色id命名放入resources\data\characters文件夹中、CG可放在resources\data\img中，最后将角色id添加到resources\characters.json的数组中。
+制作完后将新角色的json文件以角色id命名放入resources\data\characters文件夹中、CG可放在resources\data\img中，最后将角色id添加到resources\data\characters.json的数组中。
 ## 修改敌人
-敌人（即本作圣女）的角色信息存放在resources\enemy.json中:
+敌人（即本作圣女）的角色信息存放在resources\data\enemy.json中:
 ```
 {
   "name": "薇薇安", //角色名
